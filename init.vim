@@ -9,6 +9,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-rhubarb'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
@@ -102,6 +103,8 @@ noremap <leader>h <C-wr>
 " Map jj and kk to escape and move in insert mode
 inoremap jj <ESC>
 inoremap kk <ESC>
+inoremap ll <ESC>
+inoremap hh <ESC>
 
 " FZF remap
 let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
