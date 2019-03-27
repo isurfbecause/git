@@ -3,6 +3,7 @@ call plug#begin('~/.config/nvim/plugged')
 " Declare the list of plugins.
 Plug 'tpope/vim-sensible'
 Plug 'flazz/vim-colorschemes'
+Plug 'google/vim-colorscheme-primary'
 Plug 'noahfrederick/vim-neovim-defaults'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -13,7 +14,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
-Plug 'hashivim/vim-terraform'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ervandew/ag'
 Plug 'gabesoft/vim-ags'
@@ -21,13 +21,13 @@ Plug 'scrooloose/nerdtree'
 Plug 'ekalinin/dockerfile.vim'
 Plug 'matze/vim-move' "Move lines
 Plug 'w0rp/ale' "Shellcheck
+Plug 'hashivim/vim-terraform'
 
 " Pop Up Menu Completion
-" ++++++++++++++++++++++++++++++++++++++++++++++++++ {{{
 Plug 'neoclide/coc-neco'
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-" }}}
+" Pop Up Menu End
 
 call plug#end()
 
@@ -73,10 +73,16 @@ noremap <2-LeftMouse> *
 
 
 " Color Scheme
-colorscheme monokai
+"colorscheme monokai
+
+" Google light scheme
+syntax enable
+set t_Co=256
+set background=light
+colorscheme primary
 
 " Change Color when entering Insert Mode
-autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
+"autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
 
 "Key Mappings
 let mapleader = ','
@@ -103,7 +109,6 @@ noremap <leader>h <C-wr>
 " Map jj and kk to escape and move in insert mode
 inoremap jj <ESC>
 inoremap kk <ESC>
-inoremap ll <ESC>
 inoremap hh <ESC>
 
 " FZF remap
@@ -112,7 +117,12 @@ nnoremap <C-p> :<C-u>FZF<CR>
 
 " Terraform
 let g:terraform_align=1
+let g:terraform_fold_sections=1
+let g:terraform_remap_spacebar=1
 let g:terraform_fmt_on_save=1
+let g:terraform_commentstring='//%s'
+let g:terraform_fmt_on_save=1
+" Terraform End
 
 " Exit terminal mode
 if has('nvim')
@@ -128,6 +138,8 @@ let NERDTreeShowHidden=1
 nnoremap <leader>nf :NERDTreeFind<CR>
 nnoremap <leader>nt :NERDTreeToggle<CR>
 
+
+" CoC settings
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
@@ -140,3 +152,8 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+" CoC settings
+
