@@ -22,6 +22,7 @@ Plug 'ekalinin/dockerfile.vim'
 Plug 'matze/vim-move' "Move lines
 Plug 'w0rp/ale' "Shellcheck
 Plug 'hashivim/vim-terraform'
+Plug 'arithran/vim-delete-hidden-buffers'
 
 " Pop Up Menu Completion
 Plug 'neoclide/coc-neco'
@@ -92,6 +93,9 @@ noremap <leader>w :w<cr>
 " Copy current file name
 nmap <leader>fp :let @*=expand("%")<CR>
 
+" Remove serach highlighting
+nnoremap <esc> :noh<return><esc>
+
 " go backward and forward through our command history with filtering
 "cnoremap <C-p> <Up> 
 "cnoremap <C-n> <Down>
@@ -106,6 +110,8 @@ nnoremap td :tabclose<CR>
 noremap <leader>l <C-wl>
 noremap <leader>h <C-wr>
 
+" Navigate between buffers
+noremap <Leader>b :Buffers<CR>
 " Map jj and kk to escape and move in insert mode
 inoremap jj <ESC>
 inoremap kk <ESC>
@@ -114,6 +120,15 @@ inoremap hh <ESC>
 " FZF remap
 let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 nnoremap <C-p> :<C-u>FZF<CR>
+
+" Open Ag search
+noremap <Leader>f :Ag<CR>
+
+" Search lines in a files
+noremap <Leader>l :Lines<CR>
+
+" Searches the word under the cursor through the project tree using fzf and Ag
+noremap <Leader>d :exe ':Ag ' . expand('<cword>')<CR>
 
 " Terraform
 let g:terraform_align=1
