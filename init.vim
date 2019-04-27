@@ -141,7 +141,6 @@ let g:terraform_fmt_on_save=1
 
 " Exit terminal mode
 if has('nvim')
-  tnoremap <Esc> <C-\><C-n>
   tnoremap <C-v> <Esc> <Esc>
 endif
 
