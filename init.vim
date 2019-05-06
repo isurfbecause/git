@@ -84,7 +84,7 @@ noremap <2-LeftMouse> *
 "colorscheme primary
 
 " Gruvbox
-rolorscheme gruvbox
+colorscheme gruvbox
 set background=dark    " Setting dark mode
 
 " Change Color when entering Insert Mode
