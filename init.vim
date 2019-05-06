@@ -2,8 +2,9 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Declare the list of plugins.
 Plug 'tpope/vim-sensible'
-Plug 'flazz/vim-colorschemes'
-Plug 'google/vim-colorscheme-primary'
+"Plug 'flazz/vim-colorschemes'
+"Plug 'google/vim-colorscheme-primary'
+Plug 'morhetz/gruvbox'
 Plug 'noahfrederick/vim-neovim-defaults'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -77,10 +78,14 @@ noremap <2-LeftMouse> *
 "colorscheme monokai
 
 " Google light scheme
-syntax enable
-set t_Co=256
-set background=light
-colorscheme primary
+"syntax enable
+"set t_Co=256
+"set background=light
+"colorscheme primary
+
+" Gruvbox
+rolorscheme gruvbox
+set background=dark    " Setting dark mode
 
 " Change Color when entering Insert Mode
 "autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
