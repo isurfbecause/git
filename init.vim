@@ -2,9 +2,10 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Declare the list of plugins.
 Plug 'tpope/vim-sensible'
-"Plug 'flazz/vim-colorschemes'
+Plug 'flazz/vim-colorschemes'
 "Plug 'google/vim-colorscheme-primary'
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
+Plug 'jacoborus/tender.vim'
 Plug 'noahfrederick/vim-neovim-defaults'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -29,13 +30,17 @@ Plug 'arithran/vim-delete-hidden-buffers'
 Plug 'neoclide/coc-neco'
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 " Pop Up Menu End
 
 call plug#end()
 
-set hidden           "needed for vim COC
+set formatoptions-=cro "Disable automatic comment insertion
 
-" set wildmenu        " why is this not the default?!
+set hidden           "needed for vim COC, less prompting to edit files???
+
+set cmdheight=2       " Better display for messages
+
 set  number          " Show line numbers.
 set  mouse=a         " enable mouse
 set  laststatus=2    " statusline always on
@@ -84,11 +89,31 @@ noremap <2-LeftMouse> *
 "colorscheme primary
 
 " Gruvbox
-colorscheme gruvbox
-set background=dark    " Setting dark mode
-
+"colorscheme gruvbox
+"set background=dark    " Setting dark mode
 " Change Color when entering Insert Mode
 "autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
+
+" Tender Theme
+" If you have vim >=8.0 or Neovim >= 0.1.5
+if (has("termguicolors"))
+ set termguicolors
+endif
+
+" For Neovim 0.1.3 and 0.1.4
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+" Theme
+syntax enable
+colorscheme tender
+
+" set lighline theme inside lightline config
+let g:lightline = { 'colorscheme': 'tender' }
+
+" set airline theme
+let g:airline_theme = 'tender'
+
+" Tender theme
 
 "Key Mappings
 let mapleader = ','
@@ -159,20 +184,33 @@ nnoremap <leader>nt :NERDTreeToggle<CR>
 
 
 " CoC settings
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" <TAB> maps to next completion
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
+" <S-TAB> maps to previous completion
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+  return !col || getline('.')[col - 1] =~# '\s'
 endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh() 
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " CoC settings
 
