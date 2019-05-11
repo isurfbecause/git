@@ -78,6 +78,15 @@ set history=200
 
 noremap <2-LeftMouse> *
 
+:set number relativenumber
+
+" both absolute and relative line numbers are enabled by default, which produces “hybrid” line numbers. When entering insert mode, relative line numbers are turned off, leaving absolute line numbers turned on.
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+:augroup END
+
 
 " Color Scheme
 "colorscheme monokai
