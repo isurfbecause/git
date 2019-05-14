@@ -129,6 +129,9 @@ let mapleader = ','
 nnoremap <leader>src :source $MYVIMRC<CR>
 noremap <leader>w :w<cr>
 
+" Trim trailing whitespace
+autocmd BufWritePre * %s/\s\+$//e
+
 " Copy current file name
 nmap <leader>fp :let @*=expand("%")<CR>
 
@@ -136,7 +139,7 @@ nmap <leader>fp :let @*=expand("%")<CR>
 nnoremap <esc> :noh<return><esc>
 
 " go backward and forward through our command history with filtering
-"cnoremap <C-p> <Up> 
+"cnoremap <C-p> <Up>
 "cnoremap <C-n> <Down>
 
 " Tab navigation
@@ -213,7 +216,7 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh() 
+inoremap <silent><expr> <c-space> coc#refresh()
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
