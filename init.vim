@@ -4,7 +4,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'flazz/vim-colorschemes'
 "Plug 'google/vim-colorscheme-primary'
-"Plug 'morhetz/gruvbox'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'jacoborus/tender.vim'
 Plug 'noahfrederick/vim-neovim-defaults'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -25,6 +25,7 @@ Plug 'matze/vim-move' "Move lines
 Plug 'w0rp/ale' "Shellcheck
 Plug 'hashivim/vim-terraform'
 Plug 'arithran/vim-delete-hidden-buffers'
+Plug 'digitaltoad/vim-pug'
 
 " Pop Up Menu Completion
 Plug 'neoclide/coc-neco'
@@ -97,11 +98,11 @@ noremap <2-LeftMouse> *
 "set background=light
 "colorscheme primary
 
-" Gruvbox
-"colorscheme gruvbox
-"set background=dark    " Setting dark mode
-" Change Color when entering Insert Mode
-"autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
+" PaperColor Theme
+"set t_Co=256   " This is may or may not needed.
+
+"set background=light
+"colorscheme PaperColor
 
 " Tender Theme
 " If you have vim >=8.0 or Neovim >= 0.1.5
