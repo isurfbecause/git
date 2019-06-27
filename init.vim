@@ -223,7 +223,12 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" Find symbol of current document
+nnoremap <silent> go :<C-u>CocList outline<cr>
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " CoC settings
 
