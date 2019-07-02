@@ -232,3 +232,7 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " CoC settings
 
+" Ale settings
+let g:ale_linters = {'javascript': ['eslint']}
+" Ale settings
+
