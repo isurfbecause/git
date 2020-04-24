@@ -3,6 +3,7 @@ call plug#begin('~/.config/nvim/plugged')
 " Declare the list of plugins.
 Plug 'tpope/vim-sensible'
 Plug 'flazz/vim-colorschemes'
+Plug 'flrnprz/plastic.vim'
 "Plug 'google/vim-colorscheme-primary'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'jacoborus/tender.vim'
@@ -26,6 +27,9 @@ Plug 'w0rp/ale' "Shellcheck
 Plug 'hashivim/vim-terraform'
 Plug 'arithran/vim-delete-hidden-buffers'
 Plug 'digitaltoad/vim-pug'
+Plug 'posva/vim-vue'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'zirrostig/vim-smart-swap'
 
 " Pop Up Menu Completion
 Plug 'neoclide/coc-neco'
@@ -69,7 +73,7 @@ set   splitbelow
 set   splitright      " better defaults for opening new splits!
 
 " Copy to osx clipboard
-set clipboard+=unnamedplus
+""set clipboard+=unnamedplus
 
 " Autocomplete menu like bash when pressing tab
 set wildmode=longest,list
@@ -115,7 +119,8 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " Theme
 syntax enable
-colorscheme tender
+"colorscheme tender
+colorscheme dracula
 
 " set lighline theme inside lightline config
 let g:lightline = { 'colorscheme': 'tender' }
@@ -235,4 +240,13 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Ale settings
 let g:ale_linters = {'javascript': ['eslint']}
 " Ale settings
+"
 
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+nnoremap <silent> K :call <SID>show_documentation()<CR>
